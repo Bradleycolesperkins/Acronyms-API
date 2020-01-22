@@ -36,8 +36,12 @@ class AcronymController extends Controller
     }
 
 
-    public function test(){
-        dd('in');
+    public function search(Request $request){
+        $acronyms = Acronym::where('acronym', 'like', "%{$request->q}%")
+            ->orwhere('expansion', 'like', "%{$request->q}%")
+            ->orwhere('definition', 'like', "%{$request->q}%")
+            ->get();
+        return $acronyms;
     }
 
 

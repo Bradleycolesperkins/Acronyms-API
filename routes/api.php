@@ -20,13 +20,13 @@ use Illuminate\Http\Request;
 Route::post('login', 'Auth\LoginController@authenticate');
 Route::post('register', 'Auth\RegisterController@create');
 
+Route::get('acronyms/search', 'AcronymController@search');
 Route::get('acronyms', 'AcronymController@index');
 Route::get('acronym/{id}', 'AcronymController@show');
 
 
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('acronym', 'AcronymController@create');
-    Route::get('loginTest', 'AcronymController@test');
 });
 
 
